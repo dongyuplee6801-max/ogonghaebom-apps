@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#244f3a">
+  <title>주문서 만들기 · 오공해봄</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="screen-app">
+    <header class="brand-bar">
+      <div class="brand"><span class="brand-mark" aria-hidden="true">✳</span><div><strong>오공해봄</strong><span>농산물 · 가공 · 체험</span></div></div>
+      <span class="brand-note">정성을 담아, 한 장으로</span>
+    </header>
+
+    <main>
+      <section class="intro" aria-labelledby="page-title">
+        <div><p class="eyebrow">우리 회사 작은 업무 도우미</p><h1 id="page-title">주문서 만들기<span class="title-dot">.</span></h1><p class="intro-copy">카톡과 문자로 받은 주문을 차근차근 정리해 보세요.</p></div>
+        <p id="save-status" class="save-status" role="status"><span aria-hidden="true">●</span> 자동 저장 준비 중</p>
+      </section>
+
+      <section class="document-card" aria-label="주문서 작성">
+        <div class="document-top"><div><span class="document-tag">주문서</span><h2>맛있는 마음을 전합니다</h2><p>보내는 곳과 받는 곳을 확인해 주세요.</p></div><span class="leaf-seal" aria-hidden="true">봄</span></div>
+        <div class="document-meta">
+          <label>견적 번호<input id="order-number" data-field="number" maxlength="40" autocomplete="off"></label>
+          <label>작성 날짜<input id="order-date" data-field="date" type="date" required></label>
+        </div>
+
+        <div class="parties">
+          <section class="party" aria-labelledby="sender-title"><h3 id="sender-title"><span class="section-number">01</span> 보내는 곳</h3>
+            <label>이름 · 상호<input data-field="sender.name" maxlength="80" autocomplete="organization" placeholder="보내는 곳 이름"></label>
+            <label>연락처<input data-field="sender.phone" type="tel" maxlength="40" autocomplete="tel" placeholder="010-0000-0001"></label>
+            <label>주소<textarea data-field="sender.address" rows="2" maxlength="250" autocomplete="street-address" placeholder="보내는 곳 주소"></textarea></label>
+          </section>
+          <section class="party" aria-labelledby="receiver-title"><h3 id="receiver-title"><span class="section-number">02</span> 받는 곳</h3>
+            <label>이름 · 상호<input data-field="receiver.name" maxlength="80" autocomplete="off" placeholder="받는 분 이름"></label>
+            <label>연락처<input data-field="receiver.phone" type="tel" maxlength="40" autocomplete="off" placeholder="010-0000-0002"></label>
+            <label>주소<textarea data-field="receiver.address" rows="2" maxlength="250" autocomplete="off" placeholder="받는 곳 주소"></textarea></label>
+          </section>
+        </div>
+
+        <section class="items-section" aria-labelledby="items-title">
+          <div class="section-heading"><h3 id="items-title"><span class="section-number">03</span> 주문 품목</h3><span>단가는 부가세 별도 금액입니다.</span></div>
+          <div class="table-heading" aria-hidden="true"><span>품목</span><span>수량</span><span>단가</span><span>금액</span><span>관리</span></div>
+          <div id="item-list"></div>
+          <button id="add-item" class="add-button" type="button"><span aria-hidden="true">＋</span> 품목 한 줄 추가</button>
+        </section>
+
+        <div class="bottom-grid">
+          <section class="memo-section"><label for="memo">함께 전할 말씀</label><textarea id="memo" data-field="memo" rows="4" maxlength="500" placeholder="배송 날짜나 요청 사항을 적어 주세요."></textarea><p class="gentle-note">처음 들어 있는 이름·연락처·주소는 모두 가짜 예시입니다.</p></section>
+          <section class="totals" aria-label="주문 금액 합계"><div><span>품목 금액 합계</span><strong id="subtotal">0원</strong></div><div><span>부가세 <span class="tax-badge">10%</span></span><strong id="tax">0원</strong></div><div class="grand-total"><span>총 주문 금액</span><strong id="total">0원</strong></div><p>부가세는 품목 합계의 10%이며, 원 단위로 반올림합니다.</p></section>
+        </div>
+      </section>
+
+      <div class="action-bar"><p><span aria-hidden="true">↳</span> 작성한 주문서를 편하게 나누세요.</p><div class="action-buttons"><button id="export-csv" class="button secondary" type="button">엑셀용 CSV 내보내기</button><button id="print-order" class="button primary" type="button">인쇄 · PDF</button></div></div>
+      <p class="storage-note">내용은 지금 쓰는 브라우저에 자동 저장됩니다. 다른 기기에서는 이어지지 않으니, 필요한 주문서는 파일로 보관해 주세요.</p>
+      <p id="action-status" class="action-status" role="status"></p>
+    </main>
+    <footer><strong>오공해봄</strong><span>좋은 먹거리로 이어지는 다정한 하루</span></footer>
+  </div>
+
+  <!-- 인쇄할 때는 입력 칸 대신 이 서류만 보여 줍니다. -->
+  <article id="print-sheet" class="print-sheet" aria-label="인쇄용 주문서"></article>
+</body>
+</html>

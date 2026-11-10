@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#244f3a">
+  <title>AI 상품 설명 생성기 · 오공해봄</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="screen">
+    <header class="brand-bar"><a class="back-link" href="../">← 앱 목록</a><div class="brand"><span class="brand-mark" aria-hidden="true">✳</span><div><strong>오공해봄</strong><span>농산물 · 가공 · 체험</span></div></div></header>
+    <main>
+      <section class="settings-card" aria-labelledby="settings-title"><div class="settings-heading"><h2 id="settings-title">⚙️ 설정</h2><p>팀 코드를 한 번 연결하면 다음에도 불러옵니다.</p></div><form id="settings-form" novalidate><label for="team-code">팀 코드</label><div class="settings-controls"><input id="team-code" type="password" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="전달받은 팀 코드 입력" data-lock><button id="save-team" class="button primary" type="submit" data-lock>저장 · 확인</button></div></form><p id="connection-status" class="connection-status" role="status">아직 연결하지 않았습니다.</p><p class="settings-note">팀 코드는 이 브라우저에만 보관하고, 연결 확인과 문구 작성 때만 사용합니다.</p></section>
+
+      <section class="intro"><div><p class="eyebrow">우리 상품의 좋은 점을, 알기 쉽게</p><h1>AI 상품 설명 생성기<span class="title-dot">.</span></h1><p>상품 이름과 특징 세 가지만 적어 주세요.<br>홈페이지·인스타·문자에 쓸 문구를 준비해 드릴게요.</p></div><div class="date-badge"><span>오늘 날짜</span><time id="today"></time></div></section>
+
+      <div class="work-grid">
+        <section class="card editor-card" aria-labelledby="editor-title"><div class="card-heading"><h2 id="editor-title"><span class="step">01</span> 상품을 알려 주세요</h2><span class="leaf-seal" aria-hidden="true">상품</span></div><p class="section-note">실제로 확인한 특징만 적어 주세요.</p><label for="product-name">상품 이름</label><input id="product-name" maxlength="120" placeholder="예: 매실청 키트" data-lock><label for="feature-one">특징 하나</label><textarea id="feature-one" rows="2" maxlength="500" placeholder="어떤 상품인가요?" data-lock></textarea><label for="feature-two">특징 둘</label><textarea id="feature-two" rows="2" maxlength="500" placeholder="어떻게 즐기거나 사용하나요?" data-lock></textarea><label for="feature-three">특징 셋</label><textarea id="feature-three" rows="2" maxlength="500" placeholder="어떤 점을 알려 주고 싶나요?" data-lock></textarea><button id="generate" class="button primary generate" type="button" data-lock>문구 3종 만들기 ↗</button><p id="working-status" class="working-status" role="status" hidden>작성 중… 잠시만 기다려 주세요.</p><p id="request-error" class="error-message" role="alert" hidden></p></section>
+
+        <section class="card results-card" aria-labelledby="results-title"><div class="card-heading"><h2 id="results-title"><span class="step">02</span> 이렇게 소개해 보세요</h2><button id="print" class="button secondary" type="button" data-lock>인쇄</button></div><p id="result-note" class="section-note">아직 만든 문구가 없습니다.</p><section class="copy-block"><div><h3>홈페이지용</h3><button type="button" class="copy-button" data-copy="homepage" data-lock disabled>복사</button></div><textarea id="homepage" rows="5" readonly aria-label="홈페이지용 문구" placeholder="상품을 차근차근 소개하는 문구"></textarea></section><section class="copy-block"><div><h3>인스타용</h3><button type="button" class="copy-button" data-copy="instagram" data-lock disabled>복사</button></div><textarea id="instagram" rows="5" readonly aria-label="인스타용 문구" placeholder="눈길을 끄는 짧은 소개 문구"></textarea></section><section class="copy-block"><div><h3>문자용</h3><button type="button" class="copy-button" data-copy="sms" data-lock disabled>복사</button></div><textarea id="sms" rows="4" readonly aria-label="문자용 문구" placeholder="고객님께 보내기 좋은 간결한 문구"></textarea></section><section id="raw-result" class="raw-result" hidden><h3>받은 전체 문구</h3><textarea id="raw-text" rows="7" readonly aria-label="받은 전체 문구"></textarea></section><p id="copy-status" class="copy-status" role="status"></p><p class="review-note">✓ 사용하기 전에 가격·구성·표현이 실제 상품과 맞는지 한 번 확인해 주세요.</p></section>
+      </div>
+
+      <section class="products-section" aria-labelledby="products-title"><div class="products-heading"><div><h2 id="products-title">우리 상품 문구 보관함</h2><p>상품을 누르면 내용을 다시 보거나 고칠 수 있습니다.</p></div><button id="new-product" class="button secondary" type="button" data-lock>＋ 새 상품</button></div><div class="library-tools"><label class="search-label" for="search">상품 · 문구 검색<input id="search" type="search" placeholder="찾을 상품 이름이나 문구를 적어 주세요."></label><div class="library-buttons"><button id="examples" class="button secondary" type="button" data-lock>예시 데이터 5줄 넣기</button><button id="export" class="button primary" type="button" data-lock>검색 결과 CSV 내보내기</button></div></div><p class="example-note">예시 상품과 특징은 모두 연습용 가짜 자료입니다. 실제 상품 정보로 바꿔 주세요.</p><p id="list-count" class="list-count" role="status"></p><div id="product-list"></div><p id="action-status" class="action-status" role="status"></p></section>
+      <p id="storage-status" class="storage-status" role="status">입력한 상품과 만든 문구는 이 브라우저에 자동 저장됩니다. 필요한 내용은 엑셀용 파일로도 보관해 주세요.</p>
+    </main>
+    <footer><strong>오공해봄</strong><span>좋은 먹거리로 이어지는 다정한 하루</span></footer>
+  </div>
+  <!-- 인쇄할 때는 설정과 버튼을 빼고 선택한 상품의 문구만 보여 줍니다. -->
+  <article id="print-sheet" class="print-sheet"></article>
+</body>
+</html>

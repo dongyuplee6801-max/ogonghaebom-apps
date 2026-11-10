@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#244f3a">
+  <title>고객 문의 답장 도우미 · 오공해봄</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="brand-bar"><a class="brand" href="./" aria-label="오공해봄 답장 도우미 처음으로"><span class="brand-mark" aria-hidden="true">✳</span><span><strong>오공해봄</strong><span class="brand-caption">농산물 · 가공 · 체험</span></span></a><span class="brand-message">한 통의 답장에도 정성을 담아</span></header>
+
+  <main>
+    <section class="settings-card" aria-labelledby="settings-title">
+      <div class="settings-heading"><h2 id="settings-title">⚙️ 설정</h2><p>처음 한 번, 팀 코드를 연결해 주세요.</p></div>
+      <form id="settings-form" novalidate>
+        <label for="team-code">팀 코드</label>
+        <div class="settings-controls"><input id="team-code" type="password" autocomplete="off" spellcheck="false" autocapitalize="none" placeholder="전달받은 팀 코드 입력" data-lock><button id="save-team" class="button dark" type="submit" data-lock>저장 · 확인</button></div>
+      </form>
+      <p id="connection-status" class="connection-status" role="status">아직 연결하지 않았습니다.</p>
+      <p class="settings-note">팀 코드는 이 브라우저에만 저장하며, 연결 확인과 답장 작성 때만 사용합니다.</p>
+    </section>
+
+    <section class="intro" aria-labelledby="page-title"><p class="eyebrow">우리 회사 작은 업무 도우미</p><h1 id="page-title">고객 문의<br class="mobile-break"> 답장 도우미<span class="title-dot">.</span></h1><p>고객님의 문의를 붙여 넣어 주세요.<br>친근하고 정중한 답장 초안을 함께 준비해 드릴게요.</p></section>
+
+    <div class="work-grid">
+      <section class="card inquiry-card" aria-labelledby="inquiry-title">
+        <div class="card-heading"><h2 id="inquiry-title"><span class="step">01</span> 어떤 문의가 왔나요?</h2><span class="small-leaf" aria-hidden="true">문의</span></div>
+        <label for="inquiry">카톡 · 문자 문의 붙여 넣기</label>
+        <textarea id="inquiry" rows="9" maxlength="12000" placeholder="고객님이 보내주신 내용을 여기에 붙여 넣어 주세요." data-lock></textarea>
+        <div class="input-tools"><span id="input-count">0 / 12,000자</span><button id="example" class="text-button" type="button" data-lock>예시 문의 넣기</button></div>
+        <fieldset><legend>어떤 말투로 답장할까요?</legend><div class="tone-buttons" role="group" aria-label="답장 말투"><button class="tone active" type="button" data-tone="정중하게" aria-pressed="true" data-lock>정중하게</button><button class="tone" type="button" data-tone="친근하게" aria-pressed="false" data-lock>친근하게</button><button class="tone" type="button" data-tone="짧고 분명하게" aria-pressed="false" data-lock>짧고 분명하게</button></div></fieldset>
+        <button id="generate" class="button primary generate" type="button" data-lock>답장 만들기 <span aria-hidden="true">↗</span></button>
+        <p id="working-status" class="working-status" role="status" hidden>작성 중… 잠시만 기다려 주세요.</p>
+        <p id="request-error" class="error-message" role="alert" hidden></p>
+      </section>
+
+      <section class="card result-card" aria-labelledby="result-title">
+        <div class="card-heading"><h2 id="result-title"><span class="step">02</span> 이렇게 답해 보세요</h2><span class="small-leaf pale" aria-hidden="true">답장</span></div>
+        <label for="result">답장 초안</label>
+        <textarea id="result" class="result-text" rows="12" readonly placeholder="완성된 답장 초안이 여기에 나타납니다."></textarea>
+        <div class="result-bottom"><p id="result-details">아직 만든 답장이 없습니다.</p><button id="copy-result" class="button secondary" type="button" disabled data-lock>답장 복사</button></div>
+        <p id="copy-status" class="copy-status" role="status"></p>
+        <div class="review-note"><span aria-hidden="true">✓</span><p>보내기 전에 한 번 읽어 주세요.<br>가격·배송 날짜·약속은 직접 확인해 주세요.</p></div>
+      </section>
+    </div>
+
+    <section class="history-section" aria-labelledby="history-title"><div class="history-heading"><h2 id="history-title">최근 만든 답장</h2><span>최근 5개까지 자동 보관</span></div><div id="history-list"></div></section>
+    <p id="storage-status" class="storage-status" role="status">문의와 답장 기록은 지금 쓰는 브라우저에 자동 저장됩니다.</p>
+  </main>
+  <footer><strong>오공해봄</strong><span>좋은 먹거리로 이어지는 다정한 하루</span></footer>
+</body>
+</html>

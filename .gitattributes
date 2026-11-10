@@ -1,0 +1,3 @@
+# 자동 업로드와 배포 설정은 어느 컴퓨터에서도 같은 줄바꿈을 사용합니다.
+.githooks/* text eol=lf
+.github/workflows/* text eol=lf

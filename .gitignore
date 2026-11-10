@@ -1,0 +1,10 @@
+# 비밀번호와 개인 보관 파일은 GitHub에 올리지 않습니다.
+.env
+.env.*
+*.pem
+*.key
+*.csv
+*.log
+node_modules/
+.DS_Store
+Thumbs.db
